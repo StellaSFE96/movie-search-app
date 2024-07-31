@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+const Searchbar = styled.input`
+  width: 30%;
+  padding: 15px 20px;
+`
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -25,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   }, [debouncedTerm, onSearch]);
 
   return (
-    <input
+    <Searchbar
       type="text"
       placeholder="Search for a movie..."
       value={searchTerm}

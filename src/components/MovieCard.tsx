@@ -11,7 +11,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: white;
   border-radius: 8px;
   width: 20%;
   padding: 16px;
@@ -21,7 +21,7 @@ const Card = styled.div`
 `;
 
 const Poster = styled.img`
-  width: 200px;
+  width: 100%;
   border-radius: 8px;
   margin-bottom: 16px;
 `;

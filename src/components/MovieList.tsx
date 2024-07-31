@@ -32,11 +32,10 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
 export default MovieList;
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 16px;
-  width: 100%;
   margin: 0 auto;
   justify-items: center;
 `;

@@ -6,14 +6,17 @@ import { Movie } from '../types/movieTypes';
 import { fetchMovies } from '../API/api';
 
 const Container = styled.div`
-  max-width: 1200vw;
+  max-width: 100vw;
   margin: 0 auto;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Title = styled.h1`
   text-align: center;
-  color: #444;
+  color: black;
 `;
 
 const HomePage: React.FC = () => {
