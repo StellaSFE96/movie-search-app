@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -15,10 +14,16 @@ const HeaderContainer = styled.header`
   box-sizing: border-box;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit; /* Inherit color from the parent component */
+`;
+
 const Title = styled.h1`
   margin: 0;
   font-size: 1.8em;
   font-family: "Playfair Display", serif;
+  color: white; 
 `;
 
 const Nav = styled.nav`
@@ -39,7 +44,9 @@ const Nav = styled.nav`
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
-      <Title>Movie Catalogue</Title>
+      <StyledLink to="/">
+        <Title>Movie Catalogue</Title>
+      </StyledLink>
       <Nav>
         <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
       </Nav>

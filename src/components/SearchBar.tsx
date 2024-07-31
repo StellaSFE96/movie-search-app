@@ -9,13 +9,13 @@ const Container = styled.div`
   justify-content: left;
   align-items: center;
   padding: 0 50px;
-`
+`;
 
 const Searchbar = styled.input`
   width: 30%;
   height: 60%;
   padding: 15px 20px;
-`
+`;
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -36,19 +36,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   }, [searchTerm]);
 
   useEffect(() => {
-    if (debouncedTerm) {
-      onSearch(debouncedTerm);
-    }
+    onSearch(debouncedTerm);
   }, [debouncedTerm, onSearch]);
 
   return (
     <Container>
       <Searchbar
-      type="text"
-      placeholder="Search for a movie..."
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
+        type="text"
+        placeholder="Search for a movie..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
     </Container>
   );
 };

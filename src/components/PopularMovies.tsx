@@ -10,7 +10,8 @@ const PopularMoviesContainer = styled.div`
 `;
 
 const PopularMoviesTitle = styled.h2`
-  text-align: center;
+  text-align: left;
+  padding-left: 80px;
 `;
 
 const MovieGrid = styled.div`
@@ -36,11 +37,14 @@ const PopularMovies: React.FC = () => {
     fetchMovies();
   }, []);
 
+  // Slicing the movies array to get only the first 5 movies
+  const topFiveMovies = movies.slice(0, 5);
+
   return (
     <PopularMoviesContainer>
       <PopularMoviesTitle>Popular Movies</PopularMoviesTitle>
       <MovieGrid>
-        {movies.map(movie => (
+        {topFiveMovies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </MovieGrid>

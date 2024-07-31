@@ -11,8 +11,9 @@ const FeaturedMoviesContainer = styled.div`
 `;
 
 const FeaturedMoviesTitle = styled.h2`
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
+  padding-left: 80px;
 `;
 
 const MovieGrid = styled.div`
@@ -38,11 +39,13 @@ const FeaturedMovies: React.FC = () => {
     fetchMovies();
   }, []);
 
+  const topFiveMovies = movies.slice(0, 5);
+
   return (
     <FeaturedMoviesContainer>
       <FeaturedMoviesTitle>Featured Movies</FeaturedMoviesTitle>
       <MovieGrid>
-        {movies.map(movie => (
+        {topFiveMovies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </MovieGrid>

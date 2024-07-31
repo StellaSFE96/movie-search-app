@@ -70,7 +70,8 @@ const Container = styled.div<{ backgroundImage: string }>`
   padding: 50px 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 50px;
   align-items: center;
   color: white;
   min-height: 100vh;
@@ -112,11 +113,12 @@ const Details = styled.div`
 `;
 
 const Section = styled.div`
-  width: 50%;
+  width: 40%;
   padding: 50px 10px;
   z-index: 1;
   text-align: left;
 `;
+
 
 const Poster = styled.img`
   width: 30%;

@@ -10,7 +10,8 @@ const UpcomingMoviesContainer = styled.div`
 `;
 
 const UpcomingMoviesTitle = styled.h2`
-  text-align: center;
+  text-align: left;
+  padding-left: 80px;
 `;
 
 const MovieGrid = styled.div`
@@ -36,11 +37,13 @@ const UpcomingMovies: React.FC = () => {
     fetchMovies();
   }, []);
 
+  const topFiveMovies = movies.slice(0, 5);
+
   return (
     <UpcomingMoviesContainer>
       <UpcomingMoviesTitle>Upcoming Movies</UpcomingMoviesTitle>
       <MovieGrid>
-        {movies.map(movie => (
+        {topFiveMovies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </MovieGrid>
