@@ -1,6 +1,6 @@
-// MovieCard.tsx
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Movie } from '../types/movieTypes';
 
 interface MovieCardProps {
@@ -18,6 +18,8 @@ const Card = styled.div`
   margin: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  text-decoration: none; /* Prevent link styling */
+  color: inherit; /* Inherit text color */
 `;
 
 const Poster = styled.img`
@@ -38,45 +40,25 @@ const Overview = styled.p`
 `;
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  // Define the URL to the movie details page, using the movie ID
+  const movieDetailsUrl = `/movie/${movie.id}`;
+
+  // Fallback poster image if no poster is provided
+  const defaultPoster = 'url-to-default-poster-image'; 
+  // Replace with default poster URL
+  const posterUrl = movie.poster_path 
+    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
+    : defaultPoster;
+
   return (
-    <Card>
-      <Poster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-      <Title>{movie.title}</Title>
-      <Overview>{movie.overview}</Overview>
-    </Card>
+    <Link to={movieDetailsUrl} style={{ textDecoration: 'none' }}>
+      <Card>
+        <Poster src={posterUrl} alt={movie.title} />
+        <Title>{movie.title}</Title>
+        <Overview>{movie.overview}</Overview>
+      </Card>
+    </Link>
   );
 };
 
 export default MovieCard;
-
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// interface MovieCardProps {
-//   movie: {
-//     id: number;
-//     title: string;
-//     overview: string;
-//     poster_path: string;
-//   };
-// }
-
-// const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-//   const { id, title, overview, poster_path } = movie;
-//   const imageUrl = poster_path
-//     ? `https://image.tmdb.org/t/p/w500${poster_path}`
-//     : 'default-poster.jpg'; // Add a default image URL
-
-//   return (
-//     <div className="movie-card">
-//       <Link to={`/movie/${id}`}>
-//         <img src={imageUrl} alt={title} />
-//         <h3>{title}</h3>
-//         <p>{overview.substring(0, 100)}...</p>
-//       </Link>
-//     </div>
-//   );
-// };
-
-// export default MovieCard;

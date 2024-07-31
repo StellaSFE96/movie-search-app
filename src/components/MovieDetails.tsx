@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-interface MovieDetailsProps {}
+interface MovieDetailsProps {
+  movieId: string;
+}
 
 interface Movie {
   id: number;
@@ -14,13 +15,12 @@ interface Movie {
   genres: { id: number; name: string }[];
 }
 
-const MovieDetails: React.FC<MovieDetailsProps> = () => {
-  const { id } = useParams<{ id: string }>();
+const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
   const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     axios
-      .get(`https://api.themoviedb.org/3/movie/${id}`, {
+      .get(`https://api.themoviedb.org/3/movie/${movieId}`, {
         params: { api_key: process.env.REACT_APP_TMDB_API_KEY },
       })
       .then((response) => {
@@ -29,7 +29,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
       .catch((error) => {
         console.error('Error fetching movie details:', error);
       });
-  }, [id]);
+  }, [movieId]);
 
   if (!movie) {
     return <div>Loading...</div>;
@@ -37,7 +37,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
 
   const imageUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : 'default-poster.jpg'; // Add a default image URL
+    : 'default-poster.jpg'; // Add default image URL
 
   return (
     <div className="movie-details">
@@ -49,7 +49,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
       <p>
         Genres: {movie.genres.map((genre) => genre.name).join(', ')}
       </p>
-      {/* Add more details as needed */}
     </div>
   );
 };
