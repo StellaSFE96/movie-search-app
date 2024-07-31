@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDetails from '../components/MovieDetails';
+import styled from 'styled-components';
 
 const MoviePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,10 +12,15 @@ const MoviePage: React.FC = () => {
   }
 
   return (
-    <div>
+    <Container>
       <MovieDetails movieId={id} />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  margin: 0 auto;
+`
 
 export default MoviePage;

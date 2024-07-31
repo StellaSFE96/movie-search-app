@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Movie } from '../types/movieTypes';
-import defaultPoster from '../assets/images/default-poster.jpg'
+import defaultPoster from '../assets/images/default-poster.jpg';
 
 interface MovieCardProps {
   movie: Movie;
@@ -17,8 +17,10 @@ const Card = styled.div`
   width: 250px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  text-decoration: none;
+  text-decoration: none; 
   color: inherit;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 `;
 
 const Poster = styled.img`
@@ -26,25 +28,23 @@ const Poster = styled.img`
   height: auto;
   border-radius: 8px;
   object-fit: cover;
-  aspect-ratio: 2 / 3; /* Example aspect ratio */
+  aspect-ratio: 2 / 3; /* Consistent aspect ratio */
+  margin-bottom: 10px;
 `;
 
 const Title = styled.h3`
   font-size: 1.2em;
-  margin: 0;
   color: #333;
 `;
 
-const Overview = styled.p`
+const Detail = styled.p`
   font-size: 0.9em;
   color: #666;
+  margin-top: 0;
 `;
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  // Define the URL to the movie details page, using the movie ID
   const movieDetailsUrl = `/movie/${movie.id}`;
-
-  // Replace with default poster URL
   const posterUrl = movie.poster_path 
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
     : defaultPoster;
@@ -54,10 +54,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       <Card>
         <Poster src={posterUrl} alt={movie.title} />
         <Title>{movie.title}</Title>
-        <Overview>{movie.overview}</Overview>
+        <Detail>Release Date: {movie.release_date || "N/A"}</Detail>
+        <Detail>Rating: {movie.vote_average || "N/A"}</Detail>
       </Card>
     </Link>
   );
 };
 
 export default MovieCard;
+

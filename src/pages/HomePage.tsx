@@ -12,12 +12,6 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1`
-  text-align: center;
-  color: black;
-  font-family: "Playfair Display", serif;
-`;
-
 const HomePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
@@ -32,7 +26,6 @@ const HomePage: React.FC = () => {
 
   return (
     <Container>
-      <Title>Movie Catalogue</Title>
       <SearchBar onSearch={handleSearch} />
       <MovieList movies={movies} />
     </Container>
