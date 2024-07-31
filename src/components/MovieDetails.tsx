@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import defaultPoster from "../assets/images/default-poster.jpg";
 import backArrow from "../assets/icons/arrow-back.svg";
+import Star from '../assets/icons/star.png';
 
 interface MovieDetailsProps {
   movieId: string;
@@ -15,6 +16,7 @@ interface Movie {
   overview: string;
   poster_path: string;
   release_date: string;
+  vote_average: number;
   runtime: number;
   genres: { id: number; name: string }[];
 }
@@ -48,6 +50,9 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
     ? `${movie.runtime} minutes` 
     : 'N/A';
 
+  const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+
+
   return (
     <Container $backgroundImage={imageUrl}>
       <Poster src={imageUrl} alt={movie.title} />
@@ -57,6 +62,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
           <p>{releaseYear}</p>
           <p>{runTime}</p>
           <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
+          <p><StarIcon src={Star} alt="star icon" />{rating}</p>
         </Details>
         <p>{movie.overview}</p>
         <Nav>
@@ -168,6 +174,12 @@ const BackIcon = styled.img`
   height: 18px;
   margin-right: 5px;
   padding-top: 4px;
+`;
+
+const StarIcon = styled.img`
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
 `;
 
 export default MovieDetails;

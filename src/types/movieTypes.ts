@@ -28,6 +28,7 @@ export interface Movie {
     runtime: number;
     status: string;
     tagline: string;
+    vote_average: number;
   }
 
   export {};

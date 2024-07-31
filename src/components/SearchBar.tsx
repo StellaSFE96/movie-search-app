@@ -16,6 +16,8 @@ const Searchbar = styled.input`
   height: 60%;
   padding: 15px 20px;
   border-radius: 20px;
+  border: none;
+  outline: none;
 `;
 
 interface SearchBarProps {
