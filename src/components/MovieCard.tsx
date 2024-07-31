@@ -86,7 +86,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         <Poster src={posterUrl} alt={movie.title} />
         <Title>{movie.title}</Title>
         <Details>
-          <ReleaseYear>Release Year: {releaseYear}</ReleaseYear>
+          <ReleaseYear>{releaseYear}</ReleaseYear>
           <Rating>
           <StarIcon src={Star} alt="star icon" />
           {rating}

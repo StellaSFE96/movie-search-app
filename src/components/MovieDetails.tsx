@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import styled from "styled-components";
 import defaultPoster from "../assets/images/default-poster.jpg";
+import backArrow from "../assets/icons/arrow-back.svg";
 
 interface MovieDetailsProps {
   movieId: string;
@@ -37,34 +39,38 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
     return <div>Loading...</div>;
   }
 
-  // Extract the year from the release date
   const releaseYear = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
-
   const imageUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : defaultPoster; // default image URL
+    : defaultPoster;
 
-    const runTime = movie.runtime 
+  const runTime = movie.runtime 
     ? `${movie.runtime} minutes` 
     : 'N/A';
 
   return (
-    <Container backgroundImage={imageUrl}>
+    <Container $backgroundImage={imageUrl}>
       <Poster src={imageUrl} alt={movie.title} />
       <Section>
         <Title>{movie.title}</Title>
         <Details>
-          <p>Release date: {releaseYear}</p>
-          <p>Runtime: {runTime}</p>
+          <p>{releaseYear}</p>
+          <p>{runTime}</p>
           <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
         </Details>
         <p>{movie.overview}</p>
+        <Nav>
+          <StyledLink to="/">
+            <BackIcon src={backArrow} alt="Back" />
+            Return
+          </StyledLink>
+        </Nav>
       </Section>
     </Container>
   );
 };
 
-const Container = styled.div<{ backgroundImage: string }>`
+const Container = styled.div<{ $backgroundImage: string }>`
   position: relative;
   width: 100%;
   padding: 50px 10px;
@@ -83,7 +89,7 @@ const Container = styled.div<{ backgroundImage: string }>`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(${(props) => props.backgroundImage});
+    background-image: url(${props => props.$backgroundImage});
     background-size: cover;
     background-position: center;
     filter: blur(10px);
@@ -104,11 +110,11 @@ const Container = styled.div<{ backgroundImage: string }>`
 
 const Details = styled.div`
   display: flex;
-  justify-content: column;
+  flex-direction: row;
   gap: 20px;
 
-  p{
-  margin: 0;
+  p {
+    margin: 0;
   }
 `;
 
@@ -118,7 +124,6 @@ const Section = styled.div`
   z-index: 1;
   text-align: left;
 `;
-
 
 const Poster = styled.img`
   width: 30%;
@@ -131,6 +136,38 @@ const Title = styled.h1`
   font-family: "Roboto", sans-serif;
   font-size: 2em;
   margin-bottom: 16px;
+`;
+
+const Nav = styled.nav`
+  width: 100px;
+  display: flex;
+  border: white solid 2px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  border-radius: 20px;
+  margin-top: 50px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  padding-bottom: 5px;
+`;
+
+const BackIcon = styled.img`
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  padding-top: 4px;
 `;
 
 export default MovieDetails;

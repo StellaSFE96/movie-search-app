@@ -4,17 +4,18 @@ import styled from 'styled-components';
 const Container = styled.div`
   width: 100%;
   height: 70px;
-  background-color: #433D8B;
+  background-color: #373A40;
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 100px;
 `;
 
 const Searchbar = styled.input`
   width: 30%;
   height: 60%;
   padding: 15px 20px;
+  border-radius: 20px;
 `;
 
 interface SearchBarProps {

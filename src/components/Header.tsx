@@ -6,7 +6,7 @@ const HeaderContainer = styled.header`
   height: 80px;
   margin: 0;
   padding: 16px 110px;
-  background-color: #17153B;
+  background-color: #151515;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -26,20 +26,6 @@ const Title = styled.h1`
   color: white; 
 `;
 
-const Nav = styled.nav`
-    width: 100px;
-    display: flex;
-    border: white solid 2px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    transition: all 0.3s ease-in-out;
-    border-radius: 20px;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-`;
 
 const Header: React.FC = () => {
   return (
@@ -47,9 +33,6 @@ const Header: React.FC = () => {
       <StyledLink to="/">
         <Title>Movie Catalogue</Title>
       </StyledLink>
-      <Nav>
-        <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
-      </Nav>
     </HeaderContainer>
   );
 };
