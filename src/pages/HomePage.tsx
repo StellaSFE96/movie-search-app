@@ -6,9 +6,7 @@ import { Movie } from '../types/movieTypes';
 import { fetchMovies } from '../API/api';
 
 const Container = styled.div`
-  max-width: 100vw;
-  margin: 0 auto;
-  padding: 16px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +15,7 @@ const Container = styled.div`
 const Title = styled.h1`
   text-align: center;
   color: black;
+  font-family: "Playfair Display", serif;
 `;
 
 const HomePage: React.FC = () => {

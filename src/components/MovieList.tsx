@@ -8,10 +8,10 @@ interface MovieListProps {
 }
 
 const MovieList: React.FC<MovieListProps> = ({ movies }) => {
-  const [visibleMovies, setVisibleMovies] = useState(10); // 3 rows of 5
+  const [visibleMovies, setVisibleMovies] = useState(10); // Initial number of movies to show
 
   const showMoreMovies = () => {
-    setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + 10); // Show 3 more rows
+    setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + 10); // Show more movies when button is clicked
   };
 
   return (
@@ -31,12 +31,13 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
 export default MovieList;
 
 const Container = styled.div`
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 16px;
-  margin: 0 auto;
-  justify-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 16px;
+  margin-top: 50px;
 `;
 
 const ShowMoreButton = styled.button`
