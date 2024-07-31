@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import defaultPoster from "../assets/images/default-poster.jpg";
 
 interface MovieDetailsProps {
   movieId: string;
@@ -28,7 +29,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
         setMovie(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching movie details:', error);
+        console.error("Error fetching movie details:", error);
       });
   }, [movieId]);
 
@@ -36,22 +37,29 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
     return <div>Loading...</div>;
   }
 
+  // Extract the year from the release date
+  const releaseYear = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
+
   const imageUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : 'default-poster.jpg'; // Add default image URL
+    : defaultPoster; // default image URL
+
+    const runTime = movie.runtime 
+    ? `${movie.runtime} minutes` 
+    : 'N/A';
 
   return (
     <Container backgroundImage={imageUrl}>
       <Poster src={imageUrl} alt={movie.title} />
-      <Details>
+      <Section>
         <Title>{movie.title}</Title>
+        <Details>
+          <p>Release date: {releaseYear}</p>
+          <p>Runtime: {runTime}</p>
+          <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
+        </Details>
         <p>{movie.overview}</p>
-        <p>Release Date: {movie.release_date || 'N/A'}</p>
-        <p>Runtime: {movie.runtime} minutes</p>
-        <p>
-          Genres: {movie.genres.map((genre) => genre.name).join(', ')}
-        </p>
-      </Details>
+      </Section>
     </Container>
   );
 };
@@ -68,13 +76,13 @@ const Container = styled.div<{ backgroundImage: string }>`
   min-height: 100vh;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(${props => props.backgroundImage});
+    background-image: url(${(props) => props.backgroundImage});
     background-size: cover;
     background-position: center;
     filter: blur(10px);
@@ -82,7 +90,7 @@ const Container = styled.div<{ backgroundImage: string }>`
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -94,6 +102,16 @@ const Container = styled.div<{ backgroundImage: string }>`
 `;
 
 const Details = styled.div`
+  display: flex;
+  justify-content: column;
+  gap: 20px;
+
+  p{
+  margin: 0;
+  }
+`;
+
+const Section = styled.div`
   width: 50%;
   padding: 50px 10px;
   z-index: 1;

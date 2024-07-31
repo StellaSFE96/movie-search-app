@@ -4,11 +4,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
-  width: 90vw;
-  height: 100px;
-  margin: 0 auto;
-  padding: 16px;
-  background-color: #007bff;
+  height: 80px;
+  margin: 0;
+  padding: 16px 110px;
+  background-color: #17153B;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -18,12 +17,23 @@ const HeaderContainer = styled.header`
 
 const Title = styled.h1`
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-family: "Playfair Display", serif;
 `;
 
 const Nav = styled.nav`
-  display: flex;
+    width: 100px;
+    display: flex;
+    border: white solid 2px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
 const Header: React.FC = () => {

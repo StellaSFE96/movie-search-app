@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+const Container = styled.div`
+  width: 100%;
+  height: 70px;
+  background-color: #433D8B;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 0 50px;
+`
+
 const Searchbar = styled.input`
   width: 30%;
+  height: 60%;
   padding: 15px 20px;
 `
 
@@ -31,12 +42,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   }, [debouncedTerm, onSearch]);
 
   return (
-    <Searchbar
+    <Container>
+      <Searchbar
       type="text"
       placeholder="Search for a movie..."
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
     />
+    </Container>
   );
 };
 
