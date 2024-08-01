@@ -5,7 +5,7 @@ import Header from './components/Header'
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/movie-search-app">
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
