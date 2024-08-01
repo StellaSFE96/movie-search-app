@@ -1,18 +1,16 @@
-// src/components/FeaturedMovies.tsx
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { fetchFeaturedMovies } from '../API/api'; // Replace this with your actual API call
-import { Movie } from '../types/movieTypes';
-import MovieCard from './MovieCard';
+import { fetchPopularMovies } from '../../API/api';
+import { Movie } from '../../types/movieTypes';
+import MovieCard from '../MovieCard';
 
-const FeaturedMoviesContainer = styled.div`
+const PopularMoviesContainer = styled.div`
   width: 100%;
   padding: 20px;
 `;
 
-const FeaturedMoviesTitle = styled.h2`
+const PopularMoviesTitle = styled.h2`
   text-align: left;
-  margin-bottom: 20px;
   padding-left: 80px;
 `;
 
@@ -23,34 +21,35 @@ const MovieGrid = styled.div`
   gap: 20px;
 `;
 
-const FeaturedMovies: React.FC = () => {
+const PopularMovies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await fetchFeaturedMovies(); // API call to fetch featured movies
+        const response = await fetchPopularMovies(); // API call to fetch popular movies
         setMovies(response.data.results);
       } catch (error) {
-        console.error('Error fetching featured movies:', error);
+        console.error('Error fetching popular movies:', error);
       }
     };
 
     fetchMovies();
   }, []);
 
+  // Slicing the movies array to get only the first 5 movies
   const topFiveMovies = movies.slice(0, 5);
 
   return (
-    <FeaturedMoviesContainer>
-      <FeaturedMoviesTitle>Featured Movies</FeaturedMoviesTitle>
+    <PopularMoviesContainer>
+      <PopularMoviesTitle>Popular Movies</PopularMoviesTitle>
       <MovieGrid>
         {topFiveMovies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </MovieGrid>
-    </FeaturedMoviesContainer>
+    </PopularMoviesContainer>
   );
 };
 
-export default FeaturedMovies;
+export default PopularMovies;
