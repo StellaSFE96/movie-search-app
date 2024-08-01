@@ -1,26 +1,28 @@
 {
   "files": {
     "main.css": "/movie-search-app/static/css/main.4a51e80f.chunk.css",
-    "main.js": "/movie-search-app/static/js/main.4611d486.chunk.js",
-    "main.js.map": "/movie-search-app/static/js/main.4611d486.chunk.js.map",
+    "main.js": "/movie-search-app/static/js/main.58d66dad.chunk.js",
+    "main.js.map": "/movie-search-app/static/js/main.58d66dad.chunk.js.map",
     "runtime-main.js": "/movie-search-app/static/js/runtime-main.017eeb4c.js",
     "runtime-main.js.map": "/movie-search-app/static/js/runtime-main.017eeb4c.js.map",
-    "static/js/2.cf799793.chunk.js": "/movie-search-app/static/js/2.cf799793.chunk.js",
-    "static/js/2.cf799793.chunk.js.map": "/movie-search-app/static/js/2.cf799793.chunk.js.map",
+    "static/js/2.955c1bc8.chunk.js": "/movie-search-app/static/js/2.955c1bc8.chunk.js",
+    "static/js/2.955c1bc8.chunk.js.map": "/movie-search-app/static/js/2.955c1bc8.chunk.js.map",
     "static/js/3.ab03b5e3.chunk.js": "/movie-search-app/static/js/3.ab03b5e3.chunk.js",
     "static/js/3.ab03b5e3.chunk.js.map": "/movie-search-app/static/js/3.ab03b5e3.chunk.js.map",
     "index.html": "/movie-search-app/index.html",
     "static/css/main.4a51e80f.chunk.css.map": "/movie-search-app/static/css/main.4a51e80f.chunk.css.map",
-    "static/js/2.cf799793.chunk.js.LICENSE.txt": "/movie-search-app/static/js/2.cf799793.chunk.js.LICENSE.txt",
+    "static/js/2.955c1bc8.chunk.js.LICENSE.txt": "/movie-search-app/static/js/2.955c1bc8.chunk.js.LICENSE.txt",
     "static/media/arrow-back.76bc0681.svg": "/movie-search-app/static/media/arrow-back.76bc0681.svg",
     "static/media/default-poster.3f971516.jpg": "/movie-search-app/static/media/default-poster.3f971516.jpg",
+    "static/media/eye.c19b9e35.png": "/movie-search-app/static/media/eye.c19b9e35.png",
+    "static/media/heart-red.556c78a5.png": "/movie-search-app/static/media/heart-red.556c78a5.png",
     "static/media/popcorn.705659fd.avif": "/movie-search-app/static/media/popcorn.705659fd.avif",
     "static/media/star.6f09a733.png": "/movie-search-app/static/media/star.6f09a733.png"
   },
   "entrypoints": [
     "static/js/runtime-main.017eeb4c.js",
-    "static/js/2.cf799793.chunk.js",
+    "static/js/2.955c1bc8.chunk.js",
     "static/css/main.4a51e80f.chunk.css",
-    "static/js/main.4611d486.chunk.js"
+    "static/js/main.58d66dad.chunk.js"
   ]
 }
