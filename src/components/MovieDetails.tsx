@@ -23,6 +23,7 @@ interface Movie {
 
 const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [isToWatch, setIsToWatch] = useState(false);
 
   useEffect(() => {
     axios
@@ -36,6 +37,22 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
         console.error("Error fetching movie details:", error);
       });
   }, [movieId]);
+
+  const handleToWatchClick = () => {
+    const storedToWatch = localStorage.getItem('toWatch');
+    let toWatch: Movie[] = storedToWatch ? JSON.parse(storedToWatch) : [];
+
+    if (isToWatch) {
+      toWatch = toWatch.filter(watch => watch.id !== movie?.id);
+    } else {
+      if (movie) {
+        toWatch.push(movie);
+      }
+    }
+
+    localStorage.setItem('toWatch', JSON.stringify(toWatch));
+    setIsToWatch(!isToWatch);
+  };
 
   if (!movie) {
     return <div>Loading...</div>;
@@ -70,6 +87,9 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movieId }) => {
             <BackIcon src={backArrow} alt="Back" />
             Return
           </StyledLink>
+          <WatchButton onClick={handleToWatchClick}>
+            {isToWatch ? 'Remove from Watch List' : 'Add to Watch List'}
+          </WatchButton>
         </Nav>
       </Section>
     </Container>
@@ -145,28 +165,30 @@ const Title = styled.h1`
 `;
 
 const Nav = styled.nav`
-  width: 100px;
+  max-width: 300px;
   display: flex;
-  border: white solid 2px;
-  padding: 5px;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease-in-out;
-  border-radius: 20px;
   margin-top: 50px;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+  gap: 10px;
 `;
 
 const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
+  text-align: center;
+  padding: 8px 20px;
+
   text-decoration: none;
   color: white;
-  text-align: center;
-  padding-bottom: 5px;
+  border: white solid 2px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
 const BackIcon = styled.img`
@@ -174,6 +196,20 @@ const BackIcon = styled.img`
   height: 18px;
   margin-right: 5px;
   padding-top: 4px;
+`;
+
+const WatchButton = styled.button`
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+
+  &:hover {
+    background-color: #e64a19;
+  }
 `;
 
 const StarIcon = styled.img`
